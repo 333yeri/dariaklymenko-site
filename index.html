@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daria Klymenko — Social Media for Conscious Brands</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clay:     #C4875A;
+      --clay-lt:  #D9A67E;
+      --clay-dk:  #A0683D;
+      --sand:     #E8D5B7;
+      --sand-lt:  #FAF6F0;
+      --sage:     #7C9B7A;
+      --sage-lt:  #A8C2A6;
+      --bark:     #2C2018;
+      --bark-md:  #5C4A35;
+      --bark-lt:  #8B7355;
+      --white:    #FFFFFF;
+      --radius:   12px;
+      --radius-lg:24px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--sand-lt);
+      color: var(--bark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+    }
+
+    img { display: block; width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Buttons ──────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s ease;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: var(--clay);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: var(--clay-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(164, 104, 61, 0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--clay);
+      border: 2px solid var(--clay);
+    }
+    .btn-outline:hover {
+      background: var(--clay);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+    .btn-white {
+      background: var(--white);
+      color: var(--clay);
+    }
+    .btn-white:hover {
+      background: var(--sand);
+      transform: translateY(-2px);
+    }
+
+    /* ── Scrolled-reveal ──────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Urgency Strip ───────────────────────────── */
+    .urgency-strip {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: var(--bark);
+      color: rgba(255,255,255,0.9);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    .urgency-strip strong { color: var(--clay-lt); }
+    .urgency-strip .strip-dots {
+      display: inline-flex;
+      gap: 5px;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+    .strip-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: inline-block;
+    }
+    .strip-dot.taken { background: var(--clay); }
+    .strip-cta {
+      color: var(--clay-lt);
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .strip-cta:hover { color: white; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 40px; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      transition: all 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(250, 246, 240, 0.96);
+      backdrop-filter: blur(12px);
+      padding: 14px 0;
+      box-shadow: 0 1px 0 rgba(44, 32, 24, 0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--bark);
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--clay); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--bark-md);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--clay); }
+    .nav-cta { margin-left: 16px; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── HERO ─────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 140px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(196, 135, 90, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 20% 70%, rgba(124, 155, 122, 0.10) 0%, transparent 50%);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(196, 135, 90, 0.12);
+      color: var(--clay-dk);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--clay);
+    }
+    .hero-headline {
+      font-size: clamp(38px, 5vw, 64px);
+      font-weight: 700;
+      color: var(--bark);
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--clay);
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--bark-md);
+      max-width: 480px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero-trust {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero-trust-text {
+      font-size: 13px;
+      color: var(--bark-lt);
+      font-weight: 500;
+    }
+    .trust-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .trust-tag {
+      background: rgba(124, 155, 122, 0.15);
+      color: var(--sage);
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .hero-visual { position: relative; }
+    .hero-photo-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: linear-gradient(145deg, var(--sand) 0%, var(--clay-lt) 100%);
+      box-shadow: 0 32px 80px rgba(44, 32, 24, 0.15);
+    }
+    .hero-photo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      filter: brightness(1.18) contrast(1.08) saturate(1.05);
+    }
+    .hero-badge {
+      position: absolute;
+      bottom: -20px; left: -24px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: 0 16px 40px rgba(44, 32, 24, 0.12);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--clay), var(--clay-dk));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+    }
+    .badge-text strong { display: block; font-size: 15px; color: var(--bark); font-weight: 600; }
+    .badge-text span { font-size: 12px; color: var(--bark-lt); }
+    .hero-tag {
+      position: absolute;
+      top: 24px; right: -16px;
+      background: var(--sage);
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(124, 155, 122, 0.4);
+    }
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { order: -1; }
+      .hero-badge { left: 0; }
+    }
+
+    /* ── FOR WHO ──────────────────────────────────── */
+    #for-who { padding: 100px 0; background: var(--bark); }
+    .for-who-inner { text-align: center; margin-bottom: 64px; }
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clay-lt);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(30px, 4vw, 48px);
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .who-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      transition: all 0.3s ease;
+    }
+    .who-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(196, 135, 90, 0.4);
+      transform: translateY(-4px);
+    }
+    .who-icon { font-size: 36px; margin-bottom: 20px; }
+    .who-card h3 { font-size: 22px; color: var(--white); margin-bottom: 12px; }
+    .who-card p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+    @media (max-width: 768px) { .who-grid { grid-template-columns: 1fr; } }
+
+    /* ── ABOUT ────────────────────────────────────── */
+    #about { padding: 100px 0; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-photo {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: linear-gradient(145deg, var(--sand) 0%, rgba(196,135,90,0.3) 100%);
+      box-shadow: 0 24px 60px rgba(44, 32, 24, 0.12);
+      position: relative;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-quote {
+      position: absolute;
+      bottom: 24px; left: 24px; right: 24px;
+      background: rgba(250,246,240,0.95);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      padding: 20px;
+      border-left: 3px solid var(--clay);
+    }
+    .about-quote p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--bark);
+      line-height: 1.5;
+    }
+    .about-content .section-title { color: var(--bark); }
+    .about-content .section-eyebrow { color: var(--clay); }
+    .about-body { font-size: 16px; color: var(--bark-md); line-height: 1.8; margin-bottom: 24px; }
+    .about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+    .about-tag {
+      background: rgba(196, 135, 90, 0.1);
+      color: var(--clay-dk);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid rgba(196, 135, 90, 0.2);
+    }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+    /* ── INSTAGRAM PREVIEW ─────────────────────────── */
+    #preview { padding: 100px 0; }
+    .preview-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 64px;
+    }
+    .preview-header .section-title { color: var(--bark); }
+    .preview-header p { font-size: 16px; color: var(--bark-md); line-height: 1.8; }
+    .insta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .insta-post {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .insta-post:hover { transform: translateY(-4px); }
+    .insta-bg {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 24px;
+      text-align: center;
+      transition: filter 0.3s ease;
+    }
+    .insta-post:hover .insta-bg { filter: brightness(0.85); }
+    .insta-post:nth-child(1) .insta-bg { background: linear-gradient(145deg, #D9A67E, #C4875A); }
+    .insta-post:nth-child(2) .insta-bg { background: linear-gradient(145deg, #A8C2A6, #7C9B7A); }
+    .insta-post:nth-child(3) .insta-bg { background: linear-gradient(145deg, #E8D5B7, #D9A67E); }
+    .insta-post:nth-child(4) .insta-bg { background: linear-gradient(145deg, #C4875A, #A0683D); }
+    .insta-post:nth-child(5) .insta-bg { background: linear-gradient(145deg, #7C9B7A, #5C7A58); }
+    .insta-post:nth-child(6) .insta-bg { background: linear-gradient(145deg, #D9A67E, #E8D5B7); }
+    .insta-post:nth-child(7) .insta-bg { background: linear-gradient(145deg, #A0683D, #C4875A); }
+    .insta-post:nth-child(8) .insta-bg { background: linear-gradient(145deg, #E8D5B7, #A8C2A6); }
+    .insta-post:nth-child(9) .insta-bg { background: linear-gradient(145deg, #C4875A, #D9A67E); }
+    .insta-type {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .insta-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; color: white;
+      line-height: 1.4; font-weight: 600;
+    }
+    .insta-overlay {
+      position: absolute; inset: 0;
+      background: rgba(44, 32, 24, 0.6);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .insta-post:hover .insta-overlay { opacity: 1; }
+    .insta-overlay span {
+      color: white; font-size: 13px; font-weight: 500;
+      padding: 8px 16px;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 50px;
+    }
+    @media (max-width: 768px) {
+      .preview-header { grid-template-columns: 1fr; gap: 24px; }
+      .insta-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── SPECIALTIES ─────────────────────────────── */
+    #specialties { padding: 100px 0; background: var(--bark); }
+    .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .spec-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      transition: all 0.3s ease;
+    }
+    .spec-item:hover { background: rgba(255,255,255,0.1); }
+    .spec-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px; font-weight: 700;
+      color: var(--clay);
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+    .spec-item h3 { font-size: 22px; color: var(--white); margin-bottom: 12px; }
+    .spec-item p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+    @media (max-width: 768px) { .spec-grid { grid-template-columns: 1fr; } }
+
+    /* ── PROCESS ─────────────────────────────────── */
+    #process { padding: 100px 0; }
+    .process-header { text-align: center; margin-bottom: 64px; }
+    .process-header .section-title { color: var(--bark); }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 32px; left: 16.66%; right: 16.66%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--clay), var(--sage));
+      z-index: 0;
+    }
+    .step { text-align: center; position: relative; z-index: 1; }
+    .step-number {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--clay);
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 24px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 24px rgba(196, 135, 90, 0.3);
+    }
+    .step h3 { font-size: 22px; color: var(--bark); margin-bottom: 12px; }
+    .step p { font-size: 15px; color: var(--bark-md); line-height: 1.7; max-width: 320px; margin: 0 auto; }
+    @media (max-width: 768px) {
+      .process-steps { grid-template-columns: 1fr; gap: 48px; }
+      .process-steps::before { display: none; }
+    }
+
+    /* ── PRICING ─────────────────────────────────── */
+    #services { padding: 100px 0; background: var(--sand); }
+    .services-header { text-align: center; margin-bottom: 64px; }
+    .services-header .section-title { color: var(--bark); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+    .pricing-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      border: 1px solid rgba(44, 32, 24, 0.08);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .pricing-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(44, 32, 24, 0.12); }
+    .pricing-card.featured {
+      background: var(--clay);
+      border-color: var(--clay);
+      transform: scale(1.03);
+    }
+    .pricing-card.featured:hover { transform: scale(1.03) translateY(-6px); box-shadow: 0 24px 60px rgba(196, 135, 90, 0.4); }
+    .featured-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--sage); color: var(--white);
+      padding: 5px 18px; border-radius: 50px;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .pricing-name {
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--bark-lt); margin-bottom: 16px;
+    }
+    .featured .pricing-name { color: rgba(255,255,255,0.8); }
+    .pricing-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px; font-weight: 700;
+      color: var(--bark); line-height: 1; margin-bottom: 4px;
+    }
+    .featured .pricing-price { color: var(--white); }
+    .pricing-price sup { font-size: 24px; font-weight: 400; vertical-align: super; }
+    .pricing-period { font-size: 14px; color: var(--bark-lt); margin-bottom: 24px; }
+    .featured .pricing-period { color: rgba(255,255,255,0.65); }
+    .pricing-desc {
+      font-size: 15px; color: var(--bark-md);
+      line-height: 1.7; margin-bottom: 28px; padding-bottom: 28px;
+      border-bottom: 1px solid rgba(44, 32, 24, 0.08);
+    }
+    .featured .pricing-desc { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.15); }
+    .pricing-features { list-style: none; margin-bottom: 28px; }
+    .pricing-features li {
+      font-size: 14px; color: var(--bark-md);
+      padding: 8px 0; padding-left: 24px;
+      position: relative; line-height: 1.5;
+    }
+    .featured .pricing-features li { color: rgba(255,255,255,0.85); }
+    .pricing-features li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--sage); font-weight: 700;
+    }
+    .featured .pricing-features li::before { color: var(--sand); }
+    .pricing-clarity {
+      font-size: 13px; color: var(--bark-lt);
+      line-height: 1.6; margin-bottom: 28px;
+      padding: 16px;
+      background: rgba(196, 135, 90, 0.06);
+      border-radius: var(--radius);
+      border: 1px solid rgba(196, 135, 90, 0.1);
+    }
+    .featured .pricing-clarity {
+      color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+    }
+    .pricing-card .btn { width: 100%; justify-content: center; }
+    .pricing-card.featured .btn-white { background: var(--white); color: var(--clay); }
+    .pricing-card.featured .btn-white:hover { background: var(--sand-lt); }
+    .guarantee-bar {
+      display: flex; align-items: center; gap: 16px;
+      margin-top: 48px; padding: 24px 32px;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(44, 32, 24, 0.08);
+    }
+    .guarantee-icon { font-size: 28px; }
+    .guarantee-text strong { display: block; font-size: 15px; color: var(--bark); margin-bottom: 4px; }
+    .guarantee-text span { font-size: 14px; color: var(--bark-md); line-height: 1.5; }
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.featured { transform: none; }
+    }
+
+    /* ── SOCIAL PROOF ────────────────────────────── */
+    #proof { padding: 100px 0; background: var(--sand); }
+    .proof-header { text-align: center; margin-bottom: 64px; }
+    .proof-header .section-title { color: var(--bark); }
+    .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .proof-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      border: 1px solid rgba(44, 32, 24, 0.08);
+    }
+    .proof-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 17px;
+      color: var(--bark); line-height: 1.7; margin-bottom: 20px;
+    }
+    .proof-author { display: flex; align-items: center; gap: 12px; }
+    .proof-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--clay), var(--clay-dk));
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 700; font-size: 14px;
+    }
+    .proof-name { font-size: 14px; font-weight: 600; color: var(--bark); }
+    .proof-role { font-size: 12px; color: var(--bark-lt); }
+    @media (max-width: 768px) { .proof-grid { grid-template-columns: 1fr; } }
+
+    /* ── FAQ ────────────────────────────────────── */
+    #faq { padding: 100px 0; }
+    .faq-header { text-align: center; margin-bottom: 64px; }
+    .faq-header .section-title { color: var(--bark); }
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid rgba(44, 32, 24, 0.1); }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      padding: 24px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px; font-weight: 600;
+      color: var(--bark); cursor: pointer;
+      text-align: left; transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--clay); }
+    .faq-icon { font-size: 20px; color: var(--clay); transition: transform 0.3s; flex-shrink: 0; margin-left: 16px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      font-size: 15px; color: var(--bark-md); line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 24px; }
+
+    /* ── FREE AUDIT ────────────────────────────────── */
+    #audit { padding: 100px 0; background: var(--bark); }
+    .audit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .audit-left .section-title { color: var(--white); }
+    .audit-left .section-eyebrow { color: var(--clay-lt); }
+    .audit-left > p { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.8; margin-top: 16px; }
+    .audit-what { list-style: none; margin-top: 32px; }
+    .audit-what li {
+      font-size: 15px; color: rgba(255,255,255,0.7);
+      padding: 10px 0; padding-left: 28px;
+      position: relative; line-height: 1.6;
+    }
+    .audit-what li::before { content: '→'; position: absolute; left: 0; color: var(--clay-lt); font-weight: 700; }
+    .audit-card { background: var(--white); border-radius: var(--radius-lg); padding: 40px; }
+    .audit-card h3 { font-size: 24px; color: var(--bark); margin-bottom: 8px; }
+    .audit-card > p { font-size: 14px; color: var(--bark-lt); margin-bottom: 28px; }
+    .audit-field { margin-bottom: 20px; }
+    .audit-field label { display: block; font-size: 13px; font-weight: 600; color: var(--bark); margin-bottom: 6px; }
+    .audit-field input, .audit-field textarea {
+      width: 100%; padding: 12px 16px;
+      border: 1px solid rgba(44, 32, 24, 0.15);
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; color: var(--bark);
+      background: var(--sand-lt);
+      transition: border-color 0.2s;
+    }
+    .audit-field input:focus, .audit-field textarea:focus { outline: none; border-color: var(--clay); }
+    .audit-field textarea { min-height: 80px; resize: vertical; }
+    .audit-btn {
+      width: 100%; padding: 14px;
+      background: var(--clay); color: white;
+      border: none; border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .audit-btn:hover { background: var(--clay-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(164, 104, 61, 0.35); }
+    .audit-note { text-align: center; font-size: 12px; color: var(--bark-lt); margin-top: 16px; }
+    @media (max-width: 768px) { .audit-inner { grid-template-columns: 1fr; gap: 48px; } }
+
+    /* ── CTA BANNER ──────────────────────────────── */
+    #cta { padding: 100px 0; background: var(--clay); }
+    .cta-inner { text-align: center; max-width: 600px; margin: 0 auto; }
+    .cta-inner h2 { font-size: clamp(32px, 4vw, 48px); color: var(--white); margin-bottom: 16px; }
+    .cta-inner p { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 36px; }
+    .cta-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer { padding: 48px 0; background: var(--bark); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--white); }
+    .footer-logo span { color: var(--clay-lt); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--clay-lt); }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.4); width: 100%; text-align: center; margin-top: 16px; }
+    @media (max-width: 768px) { .footer-inner { flex-direction: column; text-align: center; } }
+
+    /* ── BOOKING MODAL ─────────────────────────────── */
+    .booking-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(44, 32, 24, 0.6);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .booking-overlay.open { opacity: 1; pointer-events: all; }
+    .booking-modal {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      width: 100%; max-width: 480px;
+      max-height: 90vh; overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(44, 32, 24, 0.3);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .booking-overlay.open .booking-modal { transform: translateY(0); }
+    .booking-header { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px 0; }
+    .booking-steps { display: flex; gap: 8px; }
+    .booking-step-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(44, 32, 24, 0.15);
+      transition: all 0.3s;
+    }
+    .booking-step-dot.active { background: var(--clay); }
+    .booking-step-dot.done { background: var(--sage); }
+    .booking-close { background: none; border: none; font-size: 18px; color: var(--bark-lt); cursor: pointer; padding: 4px; }
+    .booking-close:hover { color: var(--bark); }
+    .booking-body { padding: 24px 28px 28px; }
+    .booking-step { display: none; }
+    .booking-step.active { display: block; }
+    .booking-title { font-size: 24px; color: var(--bark); margin-bottom: 8px; }
+    .booking-subtitle { font-size: 14px; color: var(--bark-lt); margin-bottom: 24px; }
+    .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .cal-arrow {
+      background: none; border: 1px solid rgba(44, 32, 24, 0.15);
+      border-radius: 50%; width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 14px; color: var(--bark);
+      transition: all 0.2s;
+    }
+    .cal-arrow:hover { background: var(--sand-lt); }
+    .cal-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+    .cal-month { font-size: 15px; font-weight: 600; color: var(--bark); }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 20px; }
+    .cal-day-name { font-size: 11px; font-weight: 600; color: var(--bark-lt); text-align: center; padding: 8px 0; text-transform: uppercase; letter-spacing: 0.05em; }
+    .cal-day {
+      aspect-ratio: 1; border: none; background: var(--sand-lt);
+      border-radius: 8px; font-size: 13px; font-weight: 500;
+      color: var(--bark); cursor: pointer; transition: all 0.2s;
+    }
+    .cal-day:hover:not(:disabled) { background: var(--sand); }
+    .cal-day.today { border: 2px solid var(--clay); }
+    .cal-day.selected { background: var(--clay); color: white; }
+    .cal-day.empty { background: transparent; cursor: default; }
+    .cal-day:disabled { opacity: 0.3; cursor: not-allowed; }
+    .time-group-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--bark-lt);
+      margin-bottom: 10px; margin-top: 16px;
+    }
+    .time-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .time-slot {
+      padding: 10px; text-align: center;
+      border: 1px solid rgba(44, 32, 24, 0.15);
+      border-radius: var(--radius);
+      font-size: 14px; font-weight: 500;
+      color: var(--bark); cursor: pointer;
+      transition: all 0.2s;
+    }
+    .time-slot:hover { border-color: var(--clay); background: rgba(196, 135, 90, 0.08); }
+    .time-slot.selected { background: var(--clay); color: white; border-color: var(--clay); }
+    .booking-btn {
+      width: 100%; padding: 14px;
+      background: var(--clay); color: white;
+      border: none; border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 600;
+      cursor: pointer; margin-top: 24px;
+      transition: all 0.25s ease;
+    }
+    .booking-btn:hover:not(:disabled) { background: var(--clay-dk); transform: translateY(-2px); }
+    .booking-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .booking-back {
+      display: block; width: 100%; text-align: center;
+      background: none; border: none; font-size: 14px;
+      color: var(--bark-lt); cursor: pointer; margin-top: 12px; padding: 8px;
+    }
+    .booking-back:hover { color: var(--bark); }
+    .booking-field { margin-bottom: 16px; }
+    .booking-field label { display: block; font-size: 13px; font-weight: 600; color: var(--bark); margin-bottom: 6px; }
+    .booking-field input {
+      width: 100%; padding: 12px 16px;
+      border: 1px solid rgba(44, 32, 24, 0.15);
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; color: var(--bark);
+      background: var(--sand-lt);
+    }
+    .booking-field input:focus { outline: none; border-color: var(--clay); }
+    .booking-summary { background: var(--sand-lt); border-radius: var(--radius); padding: 16px; margin-bottom: 20px; }
+    .booking-summary p { font-size: 14px; color: var(--bark); margin-bottom: 4px; }
+    .confirm-wrap { text-align: center; padding: 20px 0; }
+    .confirm-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--sage);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .confirm-check { width: 36px; height: 36px; stroke: white; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .confirm-wrap h3 { font-size: 24px; color: var(--bark); margin-bottom: 8px; }
+    .confirm-wrap > p { font-size: 14px; color: var(--bark-lt); margin-bottom: 24px; }
+    .confirm-detail { background: var(--sand-lt); border-radius: var(--radius); padding: 20px; text-align: left; margin-bottom: 24px; }
+    .confirm-detail-row { font-size: 14px; color: var(--bark); padding: 6px 0; }
+  </style>
+</head>
+
+  <!-- ── URGENCY STRIP ─────────────────────────────── -->
+  <div class="urgency-strip">
+    Taking on <strong>5 founding clients</strong> at a locked-in rate.
+    <span class="strip-dots">
+      <span class="strip-dot taken"></span>
+      <span class="strip-dot taken"></span>
+      <span class="strip-dot"></span>
+      <span class="strip-dot"></span>
+      <span class="strip-dot"></span>
+    </span>
+    3 spots open.
+    <span class="strip-cta" onclick="openBooking()">Claim yours →</span>
+  </div>
+
+  <!-- ── NAV ────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">Daria <span>Klymenko</span></a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li class="nav-cta"><button onclick="openBooking()" class="btn btn-primary">Book a Free Call</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ───────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content fade-up">
+          <div class="hero-eyebrow">Social Media Strategist</div>
+          <h1 class="hero-headline">
+            Your brand has a purpose.<br/>
+            Make sure Instagram <em>shows&nbsp;it.</em>
+          </h1>
+          <p class="hero-sub">
+            I'm Daria — a fashion designer who understands that every brand tells a story.
+            I help conscious, sustainable, and purpose-driven brands own their Instagram presence
+            and build communities of people who genuinely believe in what they're building.
+          </p>
+          <div class="hero-actions">
+            <button onclick="openBooking()" class="btn btn-primary">Book Your Free Strategy Call</button>
+            <a href="#services" class="btn btn-outline">See Packages</a>
+          </div>
+          <div class="hero-trust">
+            <span class="hero-trust-text">Specialising in:</span>
+            <div class="trust-tags">
+              <span class="trust-tag">Sustainable brands</span>
+              <span class="trust-tag">Ethical fashion</span>
+              <span class="trust-tag">Purpose-driven businesses</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual fade-up">
+          <div class="hero-photo-wrap">
+            <img src="daria.jpg" alt="Daria Klymenko" />
+          </div>
+          <div class="hero-badge">
+            <div class="badge-icon">✦</div>
+            <div class="badge-text">
+              <strong>Fashion Design Background</strong>
+              <span>Visual storytelling from day one</span>
+            </div>
+          </div>
+          <div class="hero-tag">Values → Community</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOR WHO ─────────────────────────────────── -->
+  <section id="for-who">
+    <div class="container">
+      <div class="for-who-inner">
+        <p class="section-eyebrow">This is for you if...</p>
+        <h2 class="section-title">Your brand has a story.<br/>Your Instagram should be telling it.</h2>
+        <p class="section-sub">
+          I don't work with everyone. I work with brands that have a reason to exist beyond profit.
+        </p>
+      </div>
+      <div class="who-grid">
+        <div class="who-card fade-up">
+          <div class="who-icon">🌱</div>
+          <h3>Sustainable brands</h3>
+          <p>Your product or service was built around environmental responsibility. Your Instagram should reflect that same intention — not just aesthetics.</p>
+        </div>
+        <div class="who-card fade-up">
+          <div class="who-icon">🧵</div>
+          <h3>Ethical fashion & lifestyle</h3>
+          <p>You care about how things are made, where they come from, and who made them. I came from fashion design. I speak this language fluently.</p>
+        </div>
+        <div class="who-card fade-up">
+          <div class="who-icon">💫</div>
+          <h3>Values-driven founders</h3>
+          <p>Your brand is built on a <em>why</em>, not just a what. You want content that attracts the right people — not just more followers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ───────────────────────────────────── -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo fade-up">
+          <img src="daria-about.jpg" alt="Daria Klymenko" />
+          <div class="about-quote">
+            <p>"Your Instagram isn't a content calendar — it's your brand's voice."</p>
+          </div>
+        </div>
+        <div class="about-content fade-up">
+          <p class="section-eyebrow">About Daria</p>
+          <h2 class="section-title">I didn't come from marketing.<br/>I came from fashion.</h2>
+          <p class="about-body">
+            As a fashion designer, I learned that every brand has a story — told through colour,
+            texture, and intention. That same eye is what I bring to your Instagram.
+          </p>
+          <p class="about-body">
+            Before I write anything, I study your brand — your values, your aesthetic, the
+            customer you're trying to reach. Then I write in your voice, build a plan around
+            your goals, and make sure every post has a specific reason to exist.
+          </p>
+          <div class="about-tags">
+            <span class="about-tag">Captions that sound like you</span>
+            <span class="about-tag">Feeds that feel intentional</span>
+            <span class="about-tag">Strategy before content</span>
+            <span class="about-tag">Stories worth watching</span>
+            <span class="about-tag">Content that attracts your people</span>
+            <span class="about-tag">Designed around your values</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INSTAGRAM PREVIEW ─────────────────────────── -->
+  <section id="preview">
+    <div class="container">
+      <div class="preview-header">
+        <div class="fade-up">
+          <p class="section-eyebrow" style="color:var(--clay);">The aesthetic</p>
+          <h2 class="section-title" style="color:var(--bark);">This is the kind of<br/>presence we build.</h2>
+        </div>
+        <div class="fade-up">
+          <p>
+            Warm. Intentional. Unmistakably yours. Every post is built around your brand's values —
+            not trends, not templates, not recycled content.
+            The grid below shows the visual direction: earth tones, quiet confidence, and copy
+            that makes the right person stop scrolling.
+          </p>
+        </div>
+      </div>
+      <div class="insta-grid">
+        <div class="insta-post fade-up">
+          <div class="insta-bg"><div class="insta-type">Brand Story</div><div class="insta-label">"Every stitch has a reason."</div></div>
+          <div class="insta-overlay"><span>Brand narrative caption</span></div>
+        </div>
+        <div class="insta-post fade-up">
+          <div class="insta-bg"><div class="insta-type">Education</div><div class="insta-label">Why slow fashion costs more — and why that's the point</div></div>
+          <div class="insta-overlay"><span>Value-led educational post</span></div>
+        </div>
+        <div class="insta-post fade-up">
+          <div class="insta-bg"><div class="insta-type">Community</div><div class="insta-label">"This is who we make it for."</div></div>
+          <div class="insta-overlay"><span>Community-building post</span></div>
+        </div>
+        <div class="insta-post fade-up">
+          <div class="insta-bg"><div class="insta-type">Behind the Brand</div><div class="insta-label">The decision that changed how we source everything</div></div>
+          <div class="insta-overlay"><span>Founder-led story post</span></div>
+        </div>
+        <div class="insta-post fade-up">
+          <div class="insta-bg"><div class="insta-type">Values</div><div class="insta-label">"We don't do fast. We do right."</div></div>
+          <div class="insta-overlay"><span>Brand voice statement</span></div>
+        </div>
+        <div class="insta-post fade-up">
+          <div class="insta-bg"><div class="insta-type">Product Story</div><div class="insta-label">From raw material to your hands — the full journey</div></div>
+          <div class="insta-overlay"><span>Product narrative post</span></div>
+        </div>
+        <div class="insta-post fade-up">
+          <div class="insta-bg"><div class="insta-type">Conversion</div><div class="insta-label">3 questions to ask before you buy anything "sustainable"</div></div>
+          <div class="insta-overlay"><span>Trust-building carousel</span></div>
+        </div>
+        <div class="insta-post fade-up">
+          <div class="insta-bg"><div class="insta-type">Engagement</div><div class="insta-label">"What made you start caring about this?"</div></div>
+          <div class="insta-overlay"><span>Community question post</span></div>
+        </div>
+        <div class="insta-post fade-up">
+          <div class="insta-bg"><div class="insta-type">Offer</div><div class="insta-label">The collection that started with one conversation</div></div>
+          <div class="insta-overlay"><span>Soft sales post</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPECIALTIES ─────────────────────────────── -->
+  <section id="specialties">
+    <div class="container">
+      <div class="spec-grid">
+        <div class="spec-item fade-up">
+          <div class="spec-num">01</div>
+          <h3>Caption writing</h3>
+          <p>Every caption is written in your voice — not a generic template. Words that make the right person stop, read, and feel something.</p>
+        </div>
+        <div class="spec-item fade-up">
+          <div class="spec-num">02</div>
+          <h3>Content strategy</h3>
+          <p>A clear plan for what to post, when, and why. No more guessing. Every piece of content has a job to do.</p>
+        </div>
+        <div class="spec-item fade-up">
+          <div class="spec-num">03</div>
+          <h3>Visual direction</h3>
+          <p>A feed that feels like you — consistent, intentional, and designed to attract the people you're actually building for.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESS ─────────────────────────────────── -->
+  <section id="process">
+    <div class="container">
+      <div class="process-header">
+        <p class="section-eyebrow" style="color: var(--clay);">How it works</p>
+        <h2 class="section-title">Three steps to an Instagram<br/>that speaks for itself.</h2>
+      </div>
+      <div class="process-steps">
+        <div class="step fade-up">
+          <div class="step-number">1</div>
+          <h3>Discovery Call</h3>
+          <p>We talk — 15 to 20 minutes, free. I learn about your brand, your values, your audience, and what you actually want your Instagram to do for your business.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-number">2</div>
+          <h3>Strategy & Voice</h3>
+          <p>I build your brand voice guide and content strategy. You review and approve everything before anything goes live. Nothing happens without your sign-off.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-number">3</div>
+          <h3>Show Up</h3>
+          <p>I create, schedule, and post. You focus on your business. Your community grows. Your story gets told — exactly the way it should be.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES / PRICING ───────────────────────── -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header">
+        <p class="section-eyebrow" style="color: var(--clay);">Packages & Pricing</p>
+        <h2 class="section-title">Simple, transparent,<br/>and built to move you forward.</h2>
+        <p class="section-sub" style="color: var(--bark-md);">
+          Every package includes a free 15–20 minute discovery call. Pay monthly, upfront — if you don't love the first week's content, full refund. No awkward conversations.
+        </p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card fade-up">
+          <p class="pricing-name">Starter</p>
+          <p class="pricing-price"><sup>$</sup>300</p>
+          <p class="pricing-period">per month</p>
+          <p class="pricing-desc">You show up consistently. Three posts a week, every week — captions that sound like you, a strategy behind every one.</p>
+          <ul class="pricing-features">
+            <li>12 posts/month (3×/week) — feed only</li>
+            <li>Captions written in your brand voice</li>
+            <li>Hashtag research & strategy</li>
+            <li>Monthly content calendar</li>
+            <li>1 revision round per post</li>
+          </ul>
+          <p class="pricing-clarity"><strong>You get:</strong> Content ready to post — captions, hashtags, calendar.<br/><strong>You handle:</strong> Posting it, your stories, comments, and DMs.</p>
+          <button onclick="openBooking()" class="btn btn-outline">Get Started</button>
+        </div>
+        <div class="pricing-card featured fade-up">
+          <div class="featured-badge">Most Popular</div>
+          <p class="pricing-name">Brand Presence</p>
+          <p class="pricing-price"><sup>$</sup>450</p>
+          <p class="pricing-period">per month</p>
+          <p class="pricing-desc">You build a real community. Posts and stories working together — your feed builds the brand, your stories build the relationship.</p>
+          <ul class="pricing-features">
+            <li>Everything in Starter</li>
+            <li>Instagram Stories (3×/week)</li>
+            <li>Brand voice guide — yours to keep</li>
+            <li>Monthly 15–20 min strategy call</li>
+            <li>Engagement strategy</li>
+          </ul>
+          <p class="pricing-clarity" style="color:rgba(255,255,255,0.75);border-color:rgba(255,255,255,0.15);"><strong style="color:white;">You get:</strong> Feed posts + stories + a documented brand voice + a monthly call.<br/><strong style="color:white;">You handle:</strong> Responding to comments and DMs.</p>
+          <button onclick="openBooking()" class="btn btn-white">Book a Free Call</button>
+        </div>
+        <div class="pricing-card fade-up">
+          <p class="pricing-name">Full Experience</p>
+          <p class="pricing-price"><sup>$</sup>650</p>
+          <p class="pricing-period">per month</p>
+          <p class="pricing-desc">You disappear from social media completely — and it still grows. I'm inside the account so you can focus on the work you love.</p>
+          <ul class="pricing-features">
+            <li>Everything in Brand Presence</li>
+            <li>Community management — comments & DMs</li>
+            <li>Monthly performance report</li>
+            <li>Competitor & trend analysis</li>
+            <li>Reels & video content strategy</li>
+            <li>Priority support</li>
+          </ul>
+          <p class="pricing-clarity"><strong>You get:</strong> Full account management — content, stories, community, strategy, and reporting.<br/><strong>You handle:</strong> Nothing. I'm inside your account.</p>
+          <button onclick="openBooking()" class="btn btn-outline">Get Started</button>
+        </div>
+      </div>
+      <div class="guarantee-bar">
+        <div class="guarantee-icon">🛡</div>
+        <div class="guarantee-text">
+          <strong>First-week guarantee</strong>
+          <span>Pay upfront, full refund if you don't love the first week's content. No questions, no awkward conversations.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOCIAL PROOF ────────────────────────────── -->
+  <section id="proof">
+    <div class="container">
+      <div class="proof-header">
+        <p class="section-eyebrow" style="color: var(--clay);">What clients say</p>
+        <h2 class="section-title">Results from brands<br/>that took the leap.</h2>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-card fade-up">
+          <p class="proof-quote">
+            "Every brand I've worked with as a fashion designer had one thing in common — a story worth telling.
+            The problem was nobody was telling it. That's the gap I'm here to close."
+          </p>
+          <div class="proof-author">
+            <div class="proof-avatar">D</div>
+            <div>
+              <div class="proof-name">Daria Klymenko</div>
+              <div class="proof-role">Founder, in her own words</div>
+            </div>
+          </div>
+        </div>
+        <div class="proof-card fade-up" style="display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <p style="font-size:14px;color:var(--bark-md);line-height:1.7;margin-bottom:20px;">
+              Daria is currently taking on her <strong style="color:var(--bark);">first 5 founding clients</strong> at a permanently locked rate.
+              These clients will shape the first case studies and testimonials on this page.
+            </p>
+            <p style="font-size:14px;color:var(--bark-md);line-height:1.7;">
+              If you've read this far and felt something — that's your answer.
+            </p>
+          </div>
+          <button onclick="openBooking()" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:24px;">Claim a Founding Spot →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ────────────────────────────────────── -->
+  <section id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <p class="section-eyebrow" style="color: var(--clay);">FAQ</p>
+        <h2 class="section-title">Questions you probably have.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">Do I need a big following to work with you?<span class="faq-icon">+</span></button>
+          <div class="faq-a">Not at all. In fact, starting with the right strategy from the beginning is the best position to be in. The goal isn't a large audience — it's the right audience. We build that from wherever you are now.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How involved do I need to be?<span class="faq-icon">+</span></button>
+          <div class="faq-a">As much or as little as you want. At the start, I'll need a few hours of your time to learn your brand deeply. After that, you approve content and we sync monthly. Most clients spend less than 2 hours/month once we're in flow.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What does the discovery call include?<span class="faq-icon">+</span></button>
+          <div class="faq-a">15 to 20 minutes, completely free. No pitch, no pressure. We talk about your brand, your goals, your values, and what's not working right now. You'll leave with at least one clear insight you can use immediately, whether we work together or not.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Why sustainable and conscious brands specifically?<span class="faq-icon">+</span></button>
+          <div class="faq-a">Because I come from fashion design — a world where story, ethics, and aesthetics are inseparable. I genuinely care about the work these brands are doing, and I believe that when your social media person truly believes in what you're building, the content shows it.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can I cancel anytime?<span class="faq-icon">+</span></button>
+          <div class="faq-a">Yes. All packages are month-to-month with 2 weeks notice. No long contracts. I'd rather keep clients because the work is good, not because they're locked in.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FREE AUDIT ────────────────────────────────── -->
+  <section id="audit">
+    <div class="container">
+      <div class="audit-inner">
+        <div class="audit-left">
+          <p class="section-eyebrow">Free Instagram Audit</p>
+          <h2>Not ready to commit?<br/>Start here — for free.</h2>
+          <p>Send Daria your Instagram handle. She'll review your profile, your last 9 posts, and your bio — then send you a personal voice note with three specific things holding your brand back right now. No generic tips. No sales pitch. Real feedback from someone who understands your niche.</p>
+          <ul class="audit-what">
+            <li>Profile & bio audit — first impressions from a brand lens</li>
+            <li>Content analysis — what's working and what's repelling your people</li>
+            <li>One concrete change that would shift your presence this week</li>
+            <li>Delivered as a personal voice note within 48 hours</li>
+          </ul>
+        </div>
+        <div class="audit-card">
+          <h3>Get your free audit</h3>
+          <p>Takes 30 seconds to request. Daria reviews manually — no bots, no templates.</p>
+          <div class="audit-field"><label>Your name</label><input type="text" id="auditName" placeholder="Your name" /></div>
+          <div class="audit-field"><label>Your email</label><input type="email" id="auditEmail" placeholder="you@yourbrand.com" /></div>
+          <div class="audit-field"><label>Instagram handle</label><input type="text" id="auditHandle" placeholder="@yourbrand" /></div>
+          <div class="audit-field"><label>What's your brand about? <span style="font-weight:400;opacity:0.6">(optional)</span></label><textarea id="auditAbout" placeholder="Sustainable skincare, ethical fashion, wellness..."></textarea></div>
+          <button class="audit-btn" onclick="submitAudit()">Request My Free Audit →</button>
+          <p class="audit-note">Daria reviews every request personally. Response within 48 hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ──────────────────────────────── -->
+  <section id="cta">
+    <div class="container">
+      <div class="cta-inner">
+        <h2>Let's talk about<br/>your brand.</h2>
+        <p>A free 15–20 minute call. We talk about where you are, where you want to go, and whether working together makes sense. No pitch. No pressure.</p>
+        <div class="cta-actions">
+          <button onclick="openBooking()" class="btn btn-white">Book Your Free Call →</button>
+          <a href="mailto:daria.klymenkoo@gmail.com" class="btn btn-outline" style="border-color: rgba(255,255,255,0.5); color: white;">Send a Message</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BOOKING MODAL ─────────────────────────────── -->
+  <div class="booking-overlay" id="bookingOverlay">
+    <div class="booking-modal" id="bookingModal">
+      <div class="booking-header">
+        <div class="booking-steps">
+          <div class="booking-step-dot active" id="dot0"></div>
+          <div class="booking-step-dot" id="dot1"></div>
+          <div class="booking-step-dot" id="dot2"></div>
+          <div class="booking-step-dot" id="dot3"></div>
+        </div>
+        <button class="booking-close" onclick="closeBooking()">✕</button>
+      </div>
+      <div class="booking-body">
+        <div class="booking-step active" id="step1">
+          <h2 class="booking-title">Pick a date</h2>
+          <p class="booking-subtitle">Free 15–20 minute discovery call — no pitch, no pressure.</p>
+          <div class="cal-nav">
+            <button class="cal-arrow" id="calPrev" onclick="changeMonth(-1)">&#8592;</button>
+            <span class="cal-month" id="calMonth"></span>
+            <button class="cal-arrow" id="calNext" onclick="changeMonth(1)">&#8594;</button>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+          <button class="booking-btn" id="btnStep1" onclick="goStep(2)" disabled>Continue →</button>
+        </div>
+        <div class="booking-step" id="step2">
+          <h2 class="booking-title">Pick a time</h2>
+          <p class="booking-subtitle" id="step2Sub">Available slots (CET timezone)</p>
+          <div class="time-group-label">Morning</div>
+          <div class="time-grid">
+            <div class="time-slot" onclick="selectTime(this,'9:00 AM')">9:00 AM</div>
+            <div class="time-slot" onclick="selectTime(this,'10:00 AM')">10:00 AM</div>
+            <div class="time-slot" onclick="selectTime(this,'11:00 AM')">11:00 AM</div>
+          </div>
+          <div class="time-group-label">Afternoon</div>
+          <div class="time-grid">
+            <div class="time-slot" onclick="selectTime(this,'2:00 PM')">2:00 PM</div>
+            <div class="time-slot" onclick="selectTime(this,'3:00 PM')">3:00 PM</div>
+            <div class="time-slot" onclick="selectTime(this,'4:00 PM')">4:00 PM</div>
+            <div class="time-slot" onclick="selectTime(this,'5:00 PM')">5:00 PM</div>
+            <div class="time-slot" onclick="selectTime(this,'6:00 PM')">6:00 PM</div>
+          </div>
+          <button class="booking-btn" id="btnStep2" onclick="goStep(3)" disabled style="margin-top:20px">Continue →</button>
+          <button class="booking-back" onclick="goStep(1)">← Back</button>
+        </div>
+        <div class="booking-step" id="step3">
+          <h2 class="booking-title">Your details</h2>
+          <p class="booking-subtitle">So Daria knows who she's talking to.</p>
+          <div class="booking-summary"><p>📅 <strong id="summaryDate"></strong></p><p>🕐 <strong id="summaryTime"></strong></p></div>
+          <div class="booking-field"><label>Your name</label><input type="text" id="inputName" placeholder="e.g. Sofia" oninput="checkStep3()" /></div>
+          <div class="booking-field"><label>Your email</label><input type="email" id="inputEmail" placeholder="you@yourbrand.com" oninput="checkStep3()" /></div>
+          <div class="booking-field"><label>Your brand / business <span style="font-weight:400;color:var(--bark-lt)">(optional)</span></label><input type="text" id="inputBrand" placeholder="What are you building?" /></div>
+          <button class="booking-btn" id="btnStep3" onclick="submitBooking()" disabled>Confirm Booking →</button>
+          <button class="booking-back" onclick="goStep(2)">← Back</button>
+        </div>
+        <div class="booking-step" id="step4">
+          <div class="confirm-wrap">
+            <div class="confirm-icon"><svg class="confirm-check" viewBox="0 0 36 36"><polyline points="6,18 14,26 30,10"></polyline></svg></div>
+            <h3>You're booked!</h3>
+            <p>Daria will be in touch within 24 hours to confirm your slot. Check your inbox.</p>
+            <div class="confirm-detail">
+              <div class="confirm-detail-row">📅 <span><strong id="confirmDate"></strong></span></div>
+              <div class="confirm-detail-row">🕐 <span><strong id="confirmTime"></strong></span></div>
+              <div class="confirm-detail-row">📧 <span>Confirmation sent to <strong id="confirmEmail"></strong></span></div>
+            </div>
+            <button class="booking-btn" onclick="closeBooking()">Done ✓</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ──────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Daria <span>Klymenko</span></div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#cta">Contact</a>
+        </div>
+        <p class="footer-copy">© 2026 Daria Klymenko. Social Media Strategy for Conscious Brands.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Sticky nav ────────────────────────────────
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ── FAQ accordion ─────────────────────────────
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // ── Scroll animations ─────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ── Audit form → mailto ──────────────────────
+    function submitAudit() {
+      const name   = document.getElementById('auditName').value.trim();
+      const email  = document.getElementById('auditEmail').value.trim();
+      const handle = document.getElementById('auditHandle').value.trim();
+      const about  = document.getElementById('auditAbout').value.trim();
+      if (!name || !email || !handle) { alert('Please fill in your name, email, and Instagram handle.'); return; }
+      const subject = encodeURIComponent(`Free Instagram Audit Request — ${handle}`);
+      const body = encodeURIComponent(
+        `Hi Daria,\n\nI'd love a free Instagram audit!\n\nName: ${name}\nEmail: ${email}\nInstagram: ${handle}\n${about ? 'About my brand: ' + about : ''}\n\nThank you!`
+      );
+      window.open(`mailto:daria.klymenkoo@gmail.com?subject=${subject}&body=${body}`);
+    }
+
+    // ── Booking Modal ─────────────────────────────
+    let calYear, calMonth, selectedDate = null, selectedTime = null;
+
+    function openBooking() {
+      document.getElementById('bookingOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      renderCalendar();
+    }
+    function closeBooking() {
+      document.getElementById('bookingOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('bookingOverlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('bookingOverlay')) closeBooking();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBooking(); });
+
+    function goStep(n) {
+      document.querySelectorAll('.booking-step').forEach((s, i) => s.classList.toggle('active', i + 1 === n));
+      document.querySelectorAll('.booking-step-dot').forEach((d, i) => {
+        d.classList.remove('active', 'done');
+        if (i + 1 === n) d.classList.add('active');
+        else if (i + 1 < n) d.classList.add('done');
+      });
+      if (n === 3) {
+        const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('summaryDate').textContent = selectedDate.toLocaleDateString('en-GB', opts);
+        document.getElementById('summaryTime').textContent = selectedTime + ' (CET)';
+      }
+    }
+
+    function renderCalendar() {
+      const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const days = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+      const now = new Date();
+      if (!calYear) { calYear = now.getFullYear(); calMonth = now.getMonth(); }
+      document.getElementById('calMonth').textContent = months[calMonth] + ' ' + calYear;
+      document.getElementById('calPrev').disabled = (calYear === now.getFullYear() && calMonth === now.getMonth());
+      const grid = document.getElementById('calGrid');
+      grid.innerHTML = '';
+      days.forEach(d => { const el = document.createElement('div'); el.className = 'cal-day-name'; el.textContent = d; grid.appendChild(el); });
+      const firstDay = new Date(calYear, calMonth, 1).getDay();
+      const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+      for (let i = 0; i < firstDay; i++) { const el = document.createElement('button'); el.className = 'cal-day empty'; grid.appendChild(el); }
+      for (let d = 1; d <= daysInMonth; d++) {
+        const el = document.createElement('button');
+        el.className = 'cal-day';
+        el.textContent = d;
+        const thisDate = new Date(calYear, calMonth, d);
+        const today = new Date(); today.setHours(0,0,0,0);
+        if (thisDate.getTime() === today.getTime()) el.classList.add('today');
+        if (thisDate < today || thisDate.getDay() === 0) el.disabled = true;
+        el.addEventListener('click', () => {
+          document.querySelectorAll('.cal-day.selected').forEach(c => c.classList.remove('selected'));
+          el.classList.add('selected');
+          selectedDate = new Date(calYear, calMonth, d);
+          document.getElementById('btnStep1').disabled = false;
+        });
+        grid.appendChild(el);
+      }
+    }
+
+    function changeMonth(dir) {
+      calMonth += dir;
+      if (calMonth > 11) { calMonth = 0; calYear++; }
+      if (calMonth < 0) { calMonth = 11; calYear--; }
+      renderCalendar();
+    }
+
+    function selectTime(el, time) {
+      document.querySelectorAll('.time-slot.selected').forEach(s => s.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedTime = time;
+      document.getElementById('btnStep2').disabled = false;
+    }
+
+    function checkStep3() {
+      const n = document.getElementById('inputName').value.trim();
+      const e = document.getElementById('inputEmail').value.trim();
+      document.getElementById('btnStep3').disabled = !(n && e);
+    }
+
+    function submitBooking() {
+      const name = document.getElementById('inputName').value.trim();
+      const email = document.getElementById('inputEmail').value.trim();
+      const brand = document.getElementById('inputBrand').value.trim();
+      const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const dateStr = selectedDate.toLocaleDateString('en-GB', opts);
+      const subject = encodeURIComponent(`Discovery Call Booked — ${name}`);
+      const body = encodeURIComponent(
+        `Hi Daria,\n\nI've booked a discovery call!\n\nName: ${name}\nEmail: ${email}\n${brand ? 'Brand: ' + brand : ''}\nDate: ${dateStr}\nTime: ${selectedTime} (CET)\n\nLooking forward to it!`
+      );
+      window.open(`mailto:daria.klymenkoo@gmail.com?subject=${subject}&body=${body}`);
+      document.getElementById('confirmDate').textContent = dateStr;
+      document.getElementById('confirmTime').textContent = selectedTime + ' (CET)';
+      document.getElementById('confirmEmail').textContent = email;
+      goStep(4);
+    }
+  </script>
+</body>
+</html>
